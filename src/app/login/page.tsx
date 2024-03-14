@@ -1,4 +1,6 @@
-'use client';
+'use client'
+import React, { useState } from 'react';
+
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from "yup";
 import  AuthStore  from '@/stores/auth';
@@ -17,6 +19,8 @@ interface Values {
 
 export default function LoginForm() {
 
+    const [error, setError] = useState(null);
+
     const { authenticated, authenticateUser, logoutUser } = AuthStore();
     return (
         <div className='flex items-center justify-center w-screen h-screen'>
@@ -30,9 +34,12 @@ export default function LoginForm() {
                     values: Values,
                     { setSubmitting }: FormikHelpers<Values>
                 ) => {
+                    setError(null)
                     setTimeout( async () => {  
-                        await authenticateUser(values);
-                        alert(JSON.stringify(values, null, 2));
+                        const response = await authenticateUser(values);
+                        if (response) {
+                            setError(response)
+                        }
                         setSubmitting(false);
                     }, 500);
                 }}
@@ -49,8 +56,9 @@ export default function LoginForm() {
                             <div>password</div>
                             <Field name="password" type="password" className={`input input-bordered ${errors.password && touched.password ? 'input-error' : ''}`} placeholder="password..." />
                         </div>
-                        <div className='flex justify-center'>
 
+                        {error && <div className='text-red-500 pb-5'>{error}</div>}
+                        <div className='flex justify-center'>
                             <button type="submit" className="btn btn-primary">Submit</button>
                         </div>
                     </Form>

@@ -1,62 +1,40 @@
+'use client';
+
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react';
-import axios from 'axios';
+import anggotaService from "@/services/auth"
+import Cookies from 'js-cookie';
+
 interface UserInterface {
     username: string;
     password: string;
 }
 
-
 const AuthStore = () => {
+    const router = useRouter();
 
-    const API = process.env.BASE_URL
     const [authenticated, setAuthenticated] = useState(false);
 
     const authenticateUser = async ({ username, password }: UserInterface) => {
-        const response = await axios({
-            method: 'post',
-            url: API+ 'users/login',
-            withCredentials: true
-        }).then((res)=>{
-            console.log(res)
-        })
-        
-        // try {
-        //     console.log(process.env.BASE_URL);
-            
-        //     // const response = await axios.post(API+ 'users/login', {
-        //     //     username,
-        //     //     password
-        //     // });
-         
-        //     // const response = await fetch(API + 'job', {
-        //     //     mode: 'no-cors',
-        //     //     method: 'get',
-        //     //     headers: {
-        //     //         'Content-Type': 'application/json',
-        //     //         'Access-Control-Allow-Origin': 'http://localhost:3000'
-        //     //     },
-        //     //     body: JSON.stringify({ username, password })
-        //     // });
+        try{
+            const response = await anggotaService.LOGIN(username , password)
+            console.log(response);
+            setAuthenticated(true); 
+            Cookies.set('auth', "true", { expires: 1 });
 
-        //     console.log(response);
+            router.push('/dashboard');
+        }catch(e :any){
+            console.log(e);
             
-
-        //     if (response.ok) {
-        //         setAuthenticated(true);
-        //     } else {
-        //         // Jika respon tidak berhasil, tampilkan pesan kesalahan atau lakukan tindakan yang sesuai
-        //         console.error('Gagal mengotentikasi pengguna');
-        //     }
-        // } catch (error) {
-        //     // Tangani kesalahan seperti masalah jaringan
-        //     console.error('Terjadi kesalahan:', error);
-        // }
+           return e.response.data.errors
+        }
     };
 
     const logoutUser = async () => {
         // Lakukan logika logout di sini
         setAuthenticated(false); 
     };
+    
 
     return {
         authenticated,
