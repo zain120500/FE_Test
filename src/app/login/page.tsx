@@ -15,11 +15,6 @@ const SignupSchema = Yup.object().shape({
         .required('Required'),
 });
 
-interface Values {
-    username: string;
-    password: string;
-}
-
 export default function LoginForm() {
 
 
@@ -27,7 +22,7 @@ export default function LoginForm() {
 
     const [loading, setLoading] = useState(false);
 
-    const { authenticated, authenticateUser, input, setInput } = AuthStore();
+    const { authenticateUser, input, setInput } = AuthStore();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -74,7 +69,7 @@ export default function LoginForm() {
                 <div className='md:w-[470px] lg:w-[512px] absolute md:relative z-40 flexCenter top-0 right-0 bottom-0 left-0'>
                     <div className='bg-white shadow-lg md:shadow-none max-w-md p-12 relative rounded-2xl w-full m-5'>
                         <div>
-                            <Image src="/logo.png" width={250} height={250} className="h-8 w-auto" alt="Logo" />
+                            <Image src="/logo.png" width={250} height={250} className="h-18 w-auto" alt="Logo" />
                         </div>
                         <div className='my-12'>
 

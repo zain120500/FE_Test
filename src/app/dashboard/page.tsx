@@ -190,13 +190,13 @@ export default function Dashboard() {
     return (
         <>
        
-            <div className='md:flex my-5 gap-2'>
+            <div className='md:flex lg:justify-center my-5 md:gap-5'>
                 {/* <div className='flex-initial w-1/2' id="chart"></div>
                 <div id="chartPie"> </div> */}
-                <div className='md:w-2/3' >
+                <div className='md:flex-1 lg:w-1/2' >
                     <canvas id="myChart" ref={chartRef}></canvas>
                 </div>
-                <div className='flex-1'>
+                <div className='w-1/2 md:w-1/4'>
                     <canvas id="myChartPie" ref={chartPieRef}></canvas>
                 </div>
             </div>
