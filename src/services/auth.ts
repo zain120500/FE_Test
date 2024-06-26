@@ -3,7 +3,7 @@ const API = process.env.BASE_URL
 
 class authService{
     async LOGIN(username: string , password: string ){
-        return await axios.post(API+ 'users/login', {
+        return await axios.post(API+ '/login', {
             username,
             password
         });

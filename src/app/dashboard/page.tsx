@@ -1,68 +1,206 @@
-'use client'
-import JobList from '../component/jobList';
-import JobStore from '@/stores/job';
-import { useEffect } from 'react';
-import { Pagination } from "@nextui-org/pagination";
+"use client";
 
-export default function dashboard() {
+import { useEffect, useRef } from 'react';
+import ApexCharts from 'apexcharts';
+import UnitStore from '@/stores/unit';
 
-    const { data, loading, fetch, currentPage, desc, setDesc, location, setLocation, fulltime, setFulltime, get, totalPage, setCurrentPage } = JobStore();
+import RuasTable from "../component/ruasTable";
+import Chart from 'chart.js/auto';
 
-    const handleGetData = () => {
-        get(1, desc, location, fulltime);
-    };
+export default function Dashboard() {
+
+    const { dataUnit, fetchUnit } = UnitStore();
+
     useEffect(() => {
-        async function fetchData() {
-            await fetch();
+        fetchUnit()
+
+    }, []);
+
+    // useEffect(() => {
+    //     if (dataUnit.length != 0) {
+
+    //         let cat: any = []
+    //         let jumLuas: any = []
+    //         for (let item of dataUnit.data) {
+    //             cat.push(item.unit)
+    //             jumLuas.push(item.ruas.length)
+    //         }
+    //         var options = {
+    //             chart: {
+    //                 type: 'bar'
+    //             },
+    //             series: [{
+    //                 name: 'Jumlah Ruas',
+    //                 data: jumLuas
+    //             }],
+    //             xaxis: {
+    //                 categories: cat
+    //             }
+    //         };
+
+    //         const chartElement = document.querySelector("#chart");
+    //         let chart: any;
+    //         if (chartElement) {
+    //             chart = new ApexCharts(chartElement, options);
+    //             chart.render();
+    //         }
+
+    //         var pieChart = {
+    //             series: jumLuas,
+    //             chart: {
+    //                 width: 600,
+    //                 type: 'pie',
+    //             },
+    //             labels: cat,
+    //             options: {
+    //                 // chart: {
+    //                 //     width: 380,
+    //                 //     type: 'pie',
+    //                 // },
+    //                 labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+    //                 responsive: [{
+    //                     breakpoint: 480,
+    //                     options: {
+    //                         chart: {
+    //                             width: 200
+    //                         },
+    //                         legend: {
+    //                             position: 'bottom'
+    //                         }
+    //                     }
+    //                 }]
+    //             },
+    //         }
+
+    //         const chartPieElement = document.querySelector("#chartPie");
+    //         let pie: any;
+    //         if (chartPieElement) {
+    //             pie = new ApexCharts(chartPieElement, pieChart);
+    //             pie.render();
+    //         }
+
+    //         return () => {
+    //             if (chart) {
+    //                 chart.destroy();
+    //             }
+    //             if (pie) {
+    //                 pie.destroy();
+    //             }
+    //         };
+    //     }
+    // }, [dataUnit])
+
+    const chartRef: any = useRef(null);
+    const chartInstanceRef: any = useRef(null);
+    const chartPieRef: any = useRef(null);
+    const chartPieInstanceRef: any = useRef(null);
+
+
+    useEffect(() => {
+   
+        if (dataUnit.length != 0) {
+
+            let cat: any = []
+            let jumLuas: any = []
+            for (let item of dataUnit.data) {
+                cat.push(item.unit)
+                jumLuas.push(item.ruas.length)
+            }
+
+            const canvas = chartRef.current;
+
+            if (canvas && canvas instanceof HTMLCanvasElement) {
+                const ctx: any = canvas.getContext('2d');
+
+                // If a chart instance already exists, destroy it before creating a new one
+                if (chartInstanceRef.current) {
+                    chartInstanceRef.current.destroy();
+                }
+
+                chartInstanceRef.current = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: cat,
+                        datasets: [{
+                            label: 'Jumlah Ruas',
+                            data: jumLuas,
+                            borderWidth: 1,
+                            backgroundColor: ['#fc5c65', '#fd9644', '#fed330', '#26de81', '#2bcbba', '#45aaf2', '#4b7bec', '#a55eea', '#4b6584']
+                        }],
+
+                    },
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: false // Menyembunyikan legend
+                            }
+                        },
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+
+            const canvasPie = chartPieRef.current;
+
+            if (canvasPie && canvasPie instanceof HTMLCanvasElement) {
+                const ctx: any = canvasPie.getContext('2d')
+
+                // If a chart instance already exists, destroy it before creating a new one
+                if (chartPieInstanceRef.current) {
+                    chartPieInstanceRef.current.destroy();
+                }
+
+                chartPieInstanceRef.current = new Chart(ctx, {
+                    type: 'pie',
+                    
+                    data: {
+                        labels: cat,
+                        datasets: [{
+                            label: 'My First Dataset',
+                            data: jumLuas,
+                            hoverOffset: 4,
+                            backgroundColor: ['#fc5c65', '#fd9644', '#fed330', '#26de81', '#2bcbba', '#45aaf2', '#4b7bec', '#a55eea', '#4b6584'],
+                        }],
+                    },
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: false // Menyembunyikan legend
+                            }
+                        },
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+
+                    }
+                });
+            }
         }
-        fetchData();
-    }, []); 
+    }, [dataUnit]);
 
     return (
-        <div>
-            <div className="grid grid-rows-1">
-                <div className="grid grid-cols-4 gap-3">
-                    <div>
-                        {desc}
-                        <label htmlFor="">Job Description</label>
-                        <input type="text" value={desc}
-                            onChange={(e) => setDesc(e.target.value)} placeholder="Type here" className="input input-bordered w-full max-w-xs" />
-                    </div>
-                    <div>
-                        <label htmlFor="">Location</label>
-                        <input type="text" value={location}
-                            onChange={(e) => setLocation(e.target.value)} placeholder="Type here" className="input input-bordered w-full max-w-xs" />
-                    </div>
-                    <div className="flex items-center pt-5">
-                        <input type="checkbox"
-                            onChange={(e) => setFulltime(e.target.checked)} defaultChecked={fulltime} className="checkbox mr-3" />
-                        <label htmlFor="">Fulltime Only</label>
-                    </div>
-                    <button className="btn btn-primary mt-3" onClick={handleGetData}>
-                        Search
-                    </button>
-
+        <>
+       
+            <div className='md:flex my-5 gap-2'>
+                {/* <div className='flex-initial w-1/2' id="chart"></div>
+                <div id="chartPie"> </div> */}
+                <div className='md:w-2/3' >
+                    <canvas id="myChart" ref={chartRef}></canvas>
+                </div>
+                <div className='flex-1'>
+                    <canvas id="myChartPie" ref={chartPieRef}></canvas>
                 </div>
             </div>
-    
-            <div className="bg-white shadow-xl mt-10 p-3 rounded-lg">
-                <label className="text-2xl font-bold text-primary py-10">Job List</label>
-                <hr />
-                {loading ? (
-                    <div className='text-center'>
-                        <span className="loading loading-spinner text-primary loading-lg"></span>
-                        <p className='text-primary'>Loading...</p>
-                    </div>
-                ) : data.length === 0 ? (
-                    <div className='mt-5'>Tidak Ada Data</div>
-                ) : (
-                    <JobList data={data} />
-                )}
-                <div className='flex justify-end pt-3'>
-                    <Pagination loop showControls color="primary" total={totalPage} initialPage={1} page={currentPage} onChange={setCurrentPage} />
-                </div>
-            </div>
-
-        </div>
-    )
+            <RuasTable />
+        </>
+    );
 }

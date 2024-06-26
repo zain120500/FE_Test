@@ -6,9 +6,13 @@ import { cookies } from 'next/headers'
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
     const cookieStore = cookies()
-    const auth = cookieStore.get('auth')?.value
+    const token = cookieStore.get('token')?.value
     
-    if (!auth && !request.nextUrl.pathname.startsWith('/login')) {
+    if (token && request.nextUrl.pathname.startsWith('/login')) {
+        return NextResponse.redirect(new URL('/dashboard', request.url))
+    }
+   
+    if (!token && !request.nextUrl.pathname.startsWith('/login')) {
         return NextResponse.redirect(new URL('/login', request.url))
     }
     

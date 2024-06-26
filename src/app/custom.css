@@ -1,0 +1,503 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.sidemenu a.sidebarItemTrans{
+transition: all ease-in-out .2s;
+}
+.sidemenu .router-link-active.router-link-exact-active{
+    background-color: #3789cc;
+    color: #FFF;
+    position: relative;
+}
+.sidemenu .router-link-active.router-link-exact-active::after{
+    content: "";
+    position: absolute;
+    width: 5px;
+    background-color: #FFF;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    border-radius: 0 4px 4px 0;
+}
+
+.pgi-table {
+    --easy-table-border: none;
+    --easy-table-row-border: 1px solid #eee;
+
+    --easy-table-header-font-size: 14px;
+    --easy-table-header-height: -50px;
+    --easy-table-header-font-color: #FFF;
+    --easy-table-header-background-color: #304f7b;
+
+    --easy-table-header-item-padding: 10px 15px;
+
+    --easy-table-body-even-row-font-color: #222;
+    --easy-table-body-even-row-background-color: #f6fafe;
+
+    --easy-table-body-row-font-color: #333;
+    --easy-table-body-row-background-color: #FFF;
+
+    --easy-table-body-row-hover-font-color: #2d3a4f;
+    --easy-table-body-row-hover-background-color: #eee;
+
+    --easy-table-body-item-padding: 5px 5px;
+
+    --easy-table-footer-background-color: #FFF;
+    --easy-table-footer-font-color: #444;
+    --easy-table-footer-font-size: 14px;
+    --easy-table-footer-padding: 0px 10px;
+    --easy-table-footer-height: -50px;
+
+    --easy-table-rows-per-page-selector-width: 70px;
+    --easy-table-rows-per-page-selector-option-padding: 10px;
+    --easy-table-rows-per-page-selector-z-index: 1;
+
+
+    --easy-table-scrollbar-track-color: #888;
+    --easy-table-scrollbar-color: #888;
+    --easy-table-scrollbar-thumb-color: #555;
+    --easy-table-scrollbar-corner-color: #888;
+
+    --easy-table-loading-mask-background-color: rgba(0,0,0,0.01);
+}
+.pgi-table .vue3-easy-data-table__footer{
+    display: flex;
+    align-items: center;
+    padding-top: 5px !important;
+}
+.pgi-table .vue3-easy-data-table__footer .buttons-pagination .item{
+    border: none !important;
+    border-radius: 5px !important;
+    font-size: 13px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background-color: #eee;
+    margin: 0 1px;
+}
+
+.layer-auth-bg{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(rgba(4, 59, 104, 0.7),rgba(2, 58, 104, 0.8),rgba(4, 59, 104, 0.7));
+}
+.layer-auth-bg .title{
+    text-shadow: 1px 1px rgba(4, 59, 104, 0.4);
+}
+.layer-auth-bg .title{
+    text-shadow: 1px 1px rgba(4, 59, 104, 0.4);
+}
+
+.slide-top {
+	-webkit-animation: slide-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+ @-webkit-keyframes slide-top {
+    0% {
+      -webkit-transform: translateY(-50px);
+              transform: translateY(-50px);
+    }
+    100% {
+      -webkit-transform: translateY(0px);
+              transform: translateY(0px);
+    }
+  }
+  @keyframes slide-top {
+    0% {
+      -webkit-transform: translateY(-50px);
+              transform: translateY(-50px);
+    }
+    100% {
+      -webkit-transform: translateY(0px);
+              transform: translateY(0px);
+    }
+  }
+
+  .slide-bottom {
+	-webkit-animation: slide-bottom 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-bottom 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+ @-webkit-keyframes slide-bottom {
+    0% {
+      -webkit-transform: translateY(50px);
+              transform: translateY(50px);
+    }
+    100% {
+      -webkit-transform: translateY(0px);
+              transform: translateY(0px);
+    }
+  }
+  @keyframes slide-bottom {
+    0% {
+      -webkit-transform: translateY(50px);
+              transform: translateY(50px);
+    }
+    100% {
+      -webkit-transform: translateY(0px);
+              transform: translateY(0px);
+    }
+  }
+
+
+  /* MULTISELECT CUSTOM */
+  .multiselect {
+    font-size: small;
+    /* background-color: red;
+    border-radius: 10px; */
+}
+/* .multiselect__content-wrapper{
+  border-radius: 10px !important;
+} */
+  /* MULTISELECT CUSTOM */
+  
+  .multiselect .multiselect__option--highlight {
+    background: #1e73be;
+    outline: none;
+    color: white;
+  }
+
+  .multiselect .multiselect__option--highlight::after {
+    background: #3183cb;
+    color: white;
+  }
+
+  .multiselect .multiselect__option--selected.multiselect__option--highlight {
+    background: #50a4ed;
+    color: #fff;
+  }
+
+  .multiselect .multiselect__option--selected.multiselect__option--highlight::after {
+    background: #165893;
+    color: #fff;
+  }
+.multiselect__placeholder{
+  margin-bottom: 0 !important;
+}
+  
+.multiselect-error .multiselect__tags:has(input){
+    height: unset;
+  border: 1px solid red;
+ 
+  }
+
+  .multiselect__tag {
+    padding: 4px 26px 4px 10px;
+    font-size: 12px;
+    color: #fff;
+    line-height: 1;
+    background: #58b2fc !important;
+    margin-bottom: 0px;
+  }
+
+  .multiselect .multiselect_tag i.multiselect__tag-icon::after{
+    color: #FFF !important;
+  }
+
+  .multiselect__tags {
+    border-radius: 15px;
+}
+
+
+.multiselect__tags {
+  /* min-height: 40px; */
+  display: block;
+  padding: 8px 40px 0 8px;
+  border-radius: 15px;
+  border: 2px solid red;
+  background: #fff;
+  font-size: small;
+}
+  /* Pagination */
+
+
+  .pgi-pagination-container .Pagination{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .pgi-pagination-container .Pagination .Page{
+    background-color: rgb(232, 240, 252) !important;
+    color: #000;
+    height: 30px;
+    width: 30px;
+    border: none;
+    border-radius: 6px;
+  }
+  .pgi-pagination-container .Pagination .Page.Page-active{
+    cursor: default;
+    background-color: #1e73be !important;
+    color: #FFF;
+    transform: scale(1.04);
+    font-weight: 600;
+  }
+  .pgi-pagination-container .Pagination .PaginationControl{
+    background-color: rgb(221, 240, 254) !important;
+    height: 30px;
+    width: 30px;
+    margin: 0 1px;
+    display: f6ex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+  }
+  
+  .pgi-pagination-container .select-page-size{
+    background-color: rgb(255, 255, 255);
+    height: 30px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 14px;
+    border: 1px solid #DDD;
+    outline: none;
+    cursor: pointer;
+  }
+
+  @media (max-width:576px){
+    .pgi-pagination-container .Pagination{
+      margin-top: 10px;
+    }
+    .pgi-pagination-container .Pagination .Page{
+      height: 26px;
+      width: 26px;
+    }
+    .pgi-pagination-container .Pagination .PaginationControl{
+      height: 26px;
+      width: 26px;
+    }
+  }
+
+  /* Pagination */
+  
+/* #animation */
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.slide-in-enter-active, .slide-in-leave-active {
+  transition: transform 0.5s;
+}
+.slide-in-enter, .slide-in-leave-to {
+  transform: translateX(100%);
+}
+
+.rotated {
+  transform: rotate(360deg);
+  transition: transform 1s ease;
+}
+
+.table tbody tr.hover:hover {
+  background-color: #000; /* Gantilah dengan warna primary dari UI */
+  color: #1e73be;
+   /* Gantilah dengan warna teks yang sesuai */
+}
+
+thead {
+  background-color: #1e73be; /* Adjust the background color as needed */
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: white; /* Set the text color to white */
+}
+
+
+.dropzone-container {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+    
+  padding: 15px;
+  border: 2px dashed #e2e8f0;
+  border-radius: 2vw; /* Border-radius diatur sebagai 15% dari lebar viewport */
+  width: 100%;
+  height: 150px;/* tambahkan satuan (px) untuk tinggi */
+}
+
+.hidden-input {
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+
+.file-label {
+  font-size: medium;
+  display: block;
+  cursor: pointer;
+}
+
+.preview-container {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.preview-card {
+  display: flex;
+  border: 1px solid #a2a2a2;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+.preview-img {
+  width: 50px;
+  height: 50px;
+
+}
+
+.image-container {
+  width: 300;
+  height: 150px;
+  overflow: hidden; /* Memastikan bahwa gambar yang lebih besar dari container akan terpotong */
+  position: relative; /* Diperlukan untuk pemosisian absolute */
+}
+
+.centered-image {
+  width: 100%; /* Memastikan bahwa gambar memenuhi lebar container */
+  height: 100%; /* Memastikan bahwa gambar memenuhi tinggi container */
+  object-fit: cover; /* Memastikan aspek rasio gambar tetap */
+  position: absolute;
+  top: 50%; /* Pusat gambar di bagian atas container */
+  left: 50%; /* Pusat gambar di bagian kiri container */
+  transform: translate(-50%, -50%); /* Pusatkan gambar */
+}
+
+
+.captureFotoBtn{
+  background: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0;
+}
+
+.captureFotoBtn:hover{
+  background-color: white;
+}
+
+.captureFotoBtn div{
+  flex-basis: 35px;
+  min-width: 35px;
+  height: 35px;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 50%;
+}
+.switchFotoBtn{
+  background: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0;
+}
+
+.switchFotoBtn:hover{
+  background-color: white;
+}
+
+.switchFotoBtn div{
+  flex-basis: 35px;
+  min-width: 35px;
+  height: 35px;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 50%;
+}
+
+/* #chart {
+  max-width: 650px;
+  margin: 35px auto;
+} */
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 20px;
+  width: 140px;
+  background-image: 
+    linear-gradient(#fed330 20px, transparent 0), 
+    linear-gradient(#fed330 20px, transparent 0), 
+    linear-gradient(#fed330 20px, transparent 0), 
+    linear-gradient(#fed330 20px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 20px auto;
+  background-position: 0 0, 40px 0, 80px 0, 120px 0;
+  animation: pgfill 1s linear infinite;
+}
+
+@keyframes pgfill {
+  0% {   
+    background-image: 
+      linear-gradient(#fed330 20px, transparent 0), 
+      linear-gradient(#fed330 20px, transparent 0), 
+      linear-gradient(#fed330 20px, transparent 0), 
+      linear-gradient(#fed330 20px, transparent 0);
+  }
+  25% {   
+    background-image: 
+      linear-gradient(#1e73be 20px, transparent 0), 
+      linear-gradient(#fed330 20px, transparent 0), 
+      linear-gradient(#fed330 20px, transparent 0), 
+      linear-gradient(#fed330 20px, transparent 0);
+  }
+  50% {   
+    background-image: 
+      linear-gradient(#1e73be 20px, transparent 0), 
+      linear-gradient(#1e73be 20px, transparent 0), 
+      linear-gradient(#fed330 20px, transparent 0), 
+      linear-gradient(#fed330 20px, transparent 0);
+  }
+  75% {   
+    background-image: 
+      linear-gradient(#1e73be 20px, transparent 0), 
+      linear-gradient(#1e73be 20px, transparent 0), 
+      linear-gradient(#1e73be 20px, transparent 0), 
+      linear-gradient(#fed330 20px, transparent 0);
+  }
+  100% {   
+    background-image: 
+      linear-gradient(#1e73be 20px, transparent 0), 
+      linear-gradient(#1e73be 20px, transparent 0), 
+      linear-gradient(#1e73be 20px, transparent 0), 
+      linear-gradient(#1e73be 20px, transparent 0);
+  }
+}
